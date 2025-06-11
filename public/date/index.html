@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datetime Generator</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Datetime Generator</h1>
+
+    <div id="result" class="result">
+      <div class="datetime-container">
+        <div class="datetime-row">
+          <span class="datetime-label">Unix Epoch:</span>
+          <span id="unix-epoch" class="datetime-value"></span>
+          <button class="copy-button" data-target="unix-epoch">Copy</button>
+        </div>
+        <div class="datetime-row">
+          <span class="datetime-label">ISO 8601:</span>
+          <span id="iso-datetime" class="datetime-value"></span>
+          <button class="copy-button" data-target="iso-datetime">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

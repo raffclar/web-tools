@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fractal Benchmark</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <canvas id="fractalCanvas"></canvas>
+
+    <div class="controls">
+      <label>
+        Max Iterations: <span id="iterValue">100</span>
+        <input type="range" id="maxIterations" min="50" max="500" value="100" />
+      </label>
+    </div>
+
+    <div class="stats">
+      <div>FPS: <span id="fpsCounter" class="fps-high">0</span></div>
+      <div>Resolution: <span id="resolution">0x0</span></div>
+      <div>Pixels: <span id="pixelCount">0</span></div>
+      <div>Calculations/frame: <span id="calcCount">0</span></div>
+      <div>Zoom Level: <span id="currentZoom">1.0x</span></div>
+      <div>Center: <span id="centerCoords">(-0.5, 0)</span></div>
+    </div>
+
+    <div class="help">
+      <div><strong>Controls:</strong></div>
+      <div>• Click & Drag: Pan around</div>
+      <div>• Mouse Wheel: Zoom in/out</div>
+      <div>• Double Click: Zoom in on point</div>
+      <div>• Right Click: Reset view</div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

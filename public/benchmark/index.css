@@ -1,0 +1,88 @@
+@import url("../styles/reset.css");
+@import url("../styles/variables.css");
+@import url("../styles/global.css");
+
+body {
+  background: #1a1a1a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.controls label {
+  display: block;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.controls input[type="range"] {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.stats {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  z-index: 100;
+}
+
+.stats div {
+  margin: 5px 0;
+}
+
+.fps-high {
+  color: #4caf50;
+}
+.fps-medium {
+  color: #ffc107;
+}
+.fps-low {
+  color: #f44336;
+}
+
+canvas {
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  cursor: grab;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+canvas:active {
+  cursor: grabbing;
+}
+
+.help {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  z-index: 100;
+}
+
+.help div {
+  margin: 3px 0;
+}

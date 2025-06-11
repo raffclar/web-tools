@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UUID Analyser</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>UUID Analyser</h1>
+
+    <div class="input-container">
+      <input
+        type="text"
+        id="uuidInput"
+        placeholder="Enter UUID (e.g., 550e8400-e29b-41d4-a716-446655440000)"
+      />
+      <button id="analyseButton">Analyse</button>
+    </div>
+
+    <div id="error" class="error"></div>
+    <div id="result" class="result"></div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

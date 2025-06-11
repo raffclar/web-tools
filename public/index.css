@@ -1,0 +1,18 @@
+@import url("styles/reset.css");
+@import url("styles/variables.css");
+@import url("styles/global.css");
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.list-item-description {
+  font-size: 18px;
+}
+
+.list-item-link {
+  font-size: 25px;
+}

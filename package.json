@@ -1,0 +1,19 @@
+{
+  "name": "web-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "npx prettier . --write",
+    "lint": "npx eslint ."
+  },
+  "private": true,
+  "devDependencies": {
+    "@eslint/css": "^0.8.1",
+    "@eslint/js": "^9.28.0",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
+    "prettier": "3.5.3"
+  }
+}

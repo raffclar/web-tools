@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JWT Analyser</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>JWT Analyser</h1>
+
+    <div class="input-container">
+      <input type="text" id="jwtInput" placeholder="Enter JWT token" />
+      <button id="analyseButton">Analyse</button>
+    </div>
+
+    <div id="error" class="error"></div>
+    <div id="result" class="result">
+      <div class="jwt-part header">
+        <h3>Header</h3>
+        <pre class="json-view" id="headerData"></pre>
+      </div>
+      <div class="jwt-part payload">
+        <h3>Payload</h3>
+        <pre class="json-view" id="payloadData"></pre>
+        <div class="time-info" id="timeInfo"></div>
+      </div>
+      <div class="jwt-part signature">
+        <h3>Signature</h3>
+        <div id="signatureData"></div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Diffusion Metadata Viewer</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Image Diffusion Metadata Viewer</h1>
+
+    <div class="container">
+      <div class="upload-section">
+        <input type="file" id="fileInput" accept="image/*" class="file-input" />
+        <label for="fileInput" class="file-label">Choose an image</label>
+      </div>
+
+      <div class="preview-section hidden" id="previewContainer">
+        <div class="image-container">
+          <div>
+            <p>Preview Image</p>
+            <img id="imagePreview" class="image-preview" />
+          </div>
+        </div>
+        <div class="metadata-container">
+          <h2>Image Metadata</h2>
+          <div id="metadata" class="metadata-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
