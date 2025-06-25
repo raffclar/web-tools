@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LORA Metadata Inspector</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>LORA Metadata Inspector</h1>
+        <div class="upload-section">
+            <label for="loraFile" class="file-label">Choose LORA file</label>
+            <input type="file" id="loraFile" class="file-input" accept=".safetensors">
+        </div>
+        <div id="metadataContainer" class="metadata-container hidden">
+            <h2>LORA Metadata</h2>
+            <div id="metadata" class="metadata-content"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
