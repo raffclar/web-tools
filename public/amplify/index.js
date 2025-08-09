@@ -1,4 +1,4 @@
-import { analyseTimestamps } from "../_js/jwt.js";
+import { analyseTimestamps } from "../js/jwt.js";
 
 class JWTanalyser {
   constructor() {
