@@ -8,7 +8,6 @@
   </head>
   <body>
     <h1>UUID Analyser</h1>
-
     <div class="input-container">
       <input
         type="text"
@@ -16,6 +15,29 @@
         placeholder="Enter UUID (e.g., 550e8400-e29b-41d4-a716-446655440000)"
       />
       <button id="analyseButton">Analyse</button>
+    </div>
+
+    <div class="generator-container">
+      <h3>Generate UUID:</h3>
+      <div class="button-group">
+        <button id="generateV1">UUID v1 (Time-based)</button>
+        <button id="generateV4">UUID v4 (Random)</button>
+        <button id="generateV7">UUID v7 (Time+Random)</button>
+        <button id="generateV3">UUID v3 (MD5 Name-based)</button>
+        <button id="generateV5">UUID v5 (SHA-1 Name-based)</button>
+      </div>
+      <div id="namespaceInput" style="display: none; margin-top: 10px;">
+        <input type="text" id="nameInput" placeholder="Enter name for v3/v5 UUID" />
+        <select id="namespaceSelect">
+          <option value="dns">DNS Namespace</option>
+          <option value="url">URL Namespace</option>
+          <option value="oid">OID Namespace</option>
+          <option value="x500">X500 Namespace</option>
+          <option value="custom">Custom Namespace</option>
+        </select>
+        <input type="text" id="customNamespace" placeholder="Custom namespace UUID" style="display: none;" />
+        <button id="generateNameBased">Generate</button>
+      </div>
     </div>
 
     <div id="error" class="error"></div>

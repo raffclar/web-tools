@@ -1,6 +1,7 @@
 @import url("../styles/reset.css");
 @import url("../styles/variables.css");
 @import url("../styles/global.css");
+@import url("../styles/inputs.css");
 
 body {
   font-family: Arial, sans-serif;
@@ -36,4 +37,34 @@ button {
 .error {
   color: red;
   display: none;
+}
+
+.generator-container {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+
+#namespaceInput {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+#namespaceInput input,
+#namespaceInput select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#generateNameBased {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
