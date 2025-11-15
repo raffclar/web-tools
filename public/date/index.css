@@ -1,6 +1,7 @@
 @import url("../styles/reset.css");
 @import url("../styles/variables.css");
 @import url("../styles/global.css");
+@import url("../styles/inputs.css");
 
 body {
   font-family: Arial, sans-serif;
@@ -43,20 +44,6 @@ body {
   flex-grow: 1;
 }
 
-.copy-button {
-  background: #4caf50;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.copy-button:hover {
-  background: #45a049;
-}
-
-.copy-button.copied {
+.button-group button.copied {
   background: #2196f3;
 }

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize copy buttons
-  document.querySelectorAll(".copy-button").forEach((button) => {
+  document.querySelectorAll(".button-group button").forEach((button) => {
     button.addEventListener("click", handleCopy);
   });
 
