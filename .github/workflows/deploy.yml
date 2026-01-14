@@ -23,6 +23,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
@@ -30,7 +43,7 @@ jobs:
         # Automatically uploads an artefact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public # Specify the public directory to upload
+          path: public
 
   deploy:
     environment:

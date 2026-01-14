@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier . --write",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "build": "mkdir -p public/node_modules/three/build && cp -a node_modules/three/build/. public/node_modules/three/build/"
   },
   "private": true,
   "devDependencies": {
@@ -15,5 +16,8 @@
     "eslint": "^9.28.0",
     "globals": "^16.2.0",
     "prettier": "3.5.3"
+  },
+  "dependencies": {
+    "three": "^0.182.0"
   }
 }

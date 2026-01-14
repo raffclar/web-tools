@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Eight-Ball</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "../node_modules/three/build/three.module.js",
+            "three/addons/": "../node_modules/three/examples/jsm/"
+          }
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <h1>Magic Eight-Ball</h1>
+        <p>Ask a question and click the ball for an answer.</p>
+        
+        <div class="eight-ball-container">
+            <div id="eight-ball" class="eight-ball">
+                <div id="three-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>

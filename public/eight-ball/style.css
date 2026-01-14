@@ -1,0 +1,57 @@
+@import url("../styles/reset.css");
+@import url("../styles/global.css");
+
+body {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.25rem;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    width: 100%;
+}
+
+main h1 {
+    font-size: 2.5rem;
+}
+
+main p {
+    font-size: 1.2rem;
+}
+
+.eight-ball-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+}
+
+.eight-ball {
+    width: 90vw;
+    max-width: 80vh;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    margin: 1.25rem 0;
+}
+
+#three-container {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#three-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    outline: none;
+}
