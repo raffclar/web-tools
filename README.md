@@ -11,3 +11,4 @@ A bunch of tools I've built to help with developing. [Visit the live site.](http
 - [Glitcher](https://blog.zanidrak.com/web-tools//glitcher/) - Create glitch effects for images
 - [Diffusion](https://blog.zanidrak.com/web-tools//diffusion/) - View embedded metadata of AUTO111 & co. generated images
 - [LoRa Tools](https://blog.zanidrak.com/web-tools//lora/) - Image generation LoRa-related utilities. View the metadata within LoRA files
+- [Magic Eight-Ball](https://blog.zanidrak.com/web-tools//eight-ball/) - Ask a question and get a classic Magic Eight-Ball answer
