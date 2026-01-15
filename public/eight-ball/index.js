@@ -48,6 +48,8 @@ const container = document.getElementById('three-container');
 // Three.js Setup
 let scene, camera, renderer, die, ballMesh, ballGroup, envMap;
 // States: 'idle', 'shaking', 'settling', 'floating'
+// 'idle' is the initial start state and ensures we have a view of the '8'
+// 'floating' is the final state where an answer is correctly oriented
 let state = 'idle';
 const targetQuaternion = new THREE.Quaternion();
 
@@ -515,33 +517,29 @@ function animate() {
                 ballGroup.rotation.y = Math.PI;
                 state = 'floating';
             }
-        } else if (state === 'floating' || state === 'idle') {
+        } else if ((state === 'floating' || state === 'idle') && !isDragging) {
             // Ensure we stay at the target rotation
-            if (!isDragging) {
-                die.quaternion.copy(targetQuaternion);
+            die.quaternion.copy(targetQuaternion);
+
+            if (state === 'idle') {
+                // Show logo side (rotation 0)
+                ballGroup.rotation.y += (0 - ballGroup.rotation.y) * 0.03;
+                die.position.z += (-0.5 - die.position.z) * 0.03;
+            } else {
+                // Show window side (rotation PI)
+                ballGroup.rotation.y += (Math.PI - ballGroup.rotation.y) * 0.03;
+
             }
 
-            if (!isDragging) {
-                if (state === 'idle') {
-                    // Show logo side (rotation 0)
-                    ballGroup.rotation.y += (0 - ballGroup.rotation.y) * 0.03;
-                    die.position.z += (-0.5 - die.position.z) * 0.03;
-                } else {
-                    // Show window side (rotation PI)
-                    ballGroup.rotation.y += (Math.PI - ballGroup.rotation.y) * 0.03;
+            // Subtle floating animation
+            const time = Date.now() * 0.002;
+            const floatOffset = Math.sin(time) * 0.05;
+            die.position.z += (1.0 + floatOffset - die.position.z) * 0.03;
 
-                }
-
-                // Subtle floating animation
-                const time = Date.now() * 0.002;
-                const floatOffset = Math.sin(time) * 0.05;
-                die.position.z += (1.0 + floatOffset - die.position.z) * 0.03;
-
-                // Also add very subtle drift in x and y
-                die.position.x += (Math.sin(time * 0.7) * 0.03 - die.position.x) * 0.01;
-                die.position.y += (Math.cos(time * 0.8) * 0.03 - die.position.y) * 0.01;
-                ballGroup.rotation.x *= 0.9;
-            }
+            // Also add very subtle drift in x and y
+            die.position.x += (Math.sin(time * 0.7) * 0.03 - die.position.x) * 0.01;
+            die.position.y += (Math.cos(time * 0.8) * 0.03 - die.position.y) * 0.01;
+            ballGroup.rotation.x *= 0.9;
         }
     }
 
@@ -641,6 +639,8 @@ container.addEventListener('mousedown', (e) => {
 });
 
 window.addEventListener('mousemove', (e) => {
+    if (state !== 'idle' && state !== 'floating') return;
+
     if (isDragging && ballGroup) {
         const deltaMove = {
             x: e.clientX - previousMousePosition.x,
