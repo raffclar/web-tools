@@ -32,6 +32,24 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
   display: none;
+  background-color: #fff;
+}
+
+.result h3 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.result p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.result ul {
+  margin-bottom: 15px;
+  padding-left: 20px;
 }
 
 .error {
