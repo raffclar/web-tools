@@ -5,8 +5,8 @@ const COLOR_LOGO_CIRCLE = '#ffffff';
 const COLOR_LOGO_TEXT = '#000000';
 const COLOR_WINDOW_RIM_INNER = '#111111';
 const COLOR_WINDOW_RIM_OUTER = '#333333';
-const COLOR_LIQUID_GRADIENT_START = 'rgba(0, 2, 5, 0.3)';
-const COLOR_LIQUID_GRADIENT_MID = 'rgba(0, 3, 10, 0.5)';
+const COLOR_LIQUID_GRADIENT_START = 'rgba(0, 2, 5, 0.5)';
+const COLOR_LIQUID_GRADIENT_MID = 'rgba(0, 3, 10, 0.8)';
 const COLOR_LIQUID_GRADIENT_END = 'rgba(0, 0, 0, 1)';
 
 // Configuration - Colors
