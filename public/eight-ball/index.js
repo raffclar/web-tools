@@ -147,6 +147,7 @@ function init() {
     
     // Position the die inside the ball
     // We add it to the scene instead of ballGroup so it doesn't rotate with the ball
+    // Note: we rotate the die with user movement to partially match the ball's rotation
     scene.add(die);
     
     // Initial rotation to show the '8' logo
@@ -529,27 +530,27 @@ function animate() {
                     // Show window side (rotation PI)
                     ballGroup.rotation.y += (Math.PI - ballGroup.rotation.y) * 0.03;
 
-                    // Subtle floating animation
-                    const time = Date.now() * 0.002;
-                    const floatOffset = Math.sin(time) * 0.05;
-                    die.position.z += (1.0 + floatOffset - die.position.z) * 0.03;
-
-                    // Also add very subtle drift in x and y
-                    die.position.x += (Math.sin(time * 0.7) * 0.03 - die.position.x) * 0.01;
-                    die.position.y += (Math.cos(time * 0.8) * 0.03 - die.position.y) * 0.01;
                 }
+
+                // Subtle floating animation
+                const time = Date.now() * 0.002;
+                const floatOffset = Math.sin(time) * 0.05;
+                die.position.z += (1.0 + floatOffset - die.position.z) * 0.03;
+
+                // Also add very subtle drift in x and y
+                die.position.x += (Math.sin(time * 0.7) * 0.03 - die.position.x) * 0.01;
+                die.position.y += (Math.cos(time * 0.8) * 0.03 - die.position.y) * 0.01;
                 ballGroup.rotation.x *= 0.9;
             }
         }
-
-        // Update face opacities based on orientation
-        updateFaceOpacities();
     }
-    
+
+    // Update face materials based on orientation to make the answer easier to read
+    updateFaceMaterials();
     renderer.render(scene, camera);
 }
 
-function updateFaceOpacities() {
+function updateFaceMaterials() {
     if (!die) return;
 
     // Use the die's world normal to compare with the camera direction
@@ -591,18 +592,12 @@ function updateFaceOpacities() {
         // and orientation (dot product)
         // At z=-0.5 (deep), it should be very obscured
         // At z=1.4 (floating at the window), it should be visible
-        let visibility = THREE.MathUtils.smoothstep(die.position.z, -0.5, 1.3);
-        
-        // Factor in the dot product so it fades as it rotates away
-        visibility *= Math.max(0, maxDot);
-
+        let visibility = THREE.MathUtils.smoothstep(die.position.z, -0.5, 1.4);
         // Highlight the selected face
         const material = die.material[frontFaceIndex];
-        
         // Use emissive to make it glow and be visible through the dark "liquid"
         material.emissive.setHex(COLOR_DIE_HIGHLIGHT_EMISSIVE_HEX);
-        material.emissiveIntensity = visibility;
-        
+        material.emissiveIntensity = 0.3;
         // Also fade the base color
         material.color.lerpColors(FADE_COLOR, BASE_COLOR, visibility);
     }
