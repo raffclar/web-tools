@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier . --write",
     "lint": "npx eslint .",
-    "build": "mkdir -p public/node_modules/three/build && cp -a node_modules/three/build/. public/node_modules/three/build/"
+    "build": "mkdir -p public/node_modules/three/build && cp -a node_modules/three/build/. public/node_modules/three/build/ && cp -a node_modules/three/examples/. public/node_modules/three/examples/"
   },
   "private": true,
   "devDependencies": {
