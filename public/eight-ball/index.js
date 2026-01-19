@@ -68,8 +68,8 @@ function init() {
     camera.position.z = 6;
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width * 2, height * 2, false);
     renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
 
     // Load reflection map
@@ -621,7 +621,7 @@ window.addEventListener('resize', () => {
     const height = container.clientHeight;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(width * 2, height * 2, false);
+    renderer.setSize(width, height);
 });
 
 init();
