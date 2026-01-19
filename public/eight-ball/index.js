@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Stats from 'three/addons/libs/stats.module.js';
 
 const COLOR_BALL = '#000000';
 const COLOR_LOGO_CIRCLE = '#ffffff';
@@ -47,6 +48,7 @@ const container = document.getElementById('three-container');
 
 // Three.js Setup
 let scene, camera, renderer, die, ballMesh, ballGroup, envMap;
+let stats;
 // States: 'idle', 'shaking', 'settling', 'floating'
 // 'idle' is the initial start state and ensures we have a view of the '8'
 // 'floating' is the final state where an answer is correctly oriented
@@ -162,6 +164,12 @@ function init() {
     // Initial state
     state = 'idle';
     
+    // FPS Counter
+    stats = new Stats();
+    stats.dom.id = 'fps-counter';
+    stats.dom.style.display = 'none'; // Initially hidden
+    container.appendChild(stats.dom);
+
     animate();
 }
 
@@ -478,6 +486,9 @@ function getFaceRotation(faceIndex) {
 }
 
 function animate() {
+    if (stats) {
+        stats.begin();
+    }
     requestAnimationFrame(animate);
     
     if (die && ballGroup) {
@@ -546,6 +557,9 @@ function animate() {
     // Update face materials based on orientation to make the answer easier to read
     updateFaceMaterials();
     renderer.render(scene, camera);
+    if (stats) {
+        stats.end();
+    }
 }
 
 function updateFaceMaterials() {
@@ -710,6 +724,13 @@ window.addEventListener('keydown', (e) => {
         e.preventDefault();
         if (ballMesh) {
             ballMesh.visible = !ballMesh.visible;
+        }
+    }
+    if (e.ctrlKey && (e.key === 'k')) {
+        e.preventDefault();
+        if (stats) {
+            const isVisible = stats.dom.style.display !== 'none';
+            stats.dom.style.display = isVisible ? 'none' : 'block';
         }
     }
 });
