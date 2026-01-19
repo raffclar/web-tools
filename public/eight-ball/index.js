@@ -688,6 +688,16 @@ window.addEventListener('mouseup', () => {
     isDragging = false;
 });
 
+// Use { passive: false } to stop the page from scrolling while dragging
+container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const zoomSpeed = 0.005;
+    camera.position.z += e.deltaY * zoomSpeed;
+
+    // Prevent zooming too close or too far
+    camera.position.z = Math.max(5.5, Math.min(10, camera.position.z));
+}, { passive: false });
+
 ball.addEventListener('click', () => {
     // Only shake if we didn't just finish a significant drag
     if (totalDragDistance < 5) {

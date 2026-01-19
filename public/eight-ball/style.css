@@ -3,7 +3,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    width: 100%;
+    /* Overriding max-width from global.css to make three.js scene bigger */
+    max-width: 40%;
     margin: 0 auto;
     padding: 1.25rem;
     background: #1a1a1a;
@@ -35,8 +36,7 @@ main p {
 }
 
 .eight-ball {
-    width: 90vw;
-    max-width: 80vh;
+    width: 100%;
     aspect-ratio: 1 / 1;
     position: relative;
     cursor: pointer;
