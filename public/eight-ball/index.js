@@ -60,6 +60,22 @@ let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let totalDragDistance = 0;
 
+function getInitialZoom() {
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const aspect = width / height;
+
+    // For wider screens, z=6 is good
+    // For narrow screens (portrait), we need to zoom out
+    // Base z is 6. If aspect < 1 (portrait), we scale z
+    if (aspect < 1) {
+        // As aspect ratio decreases (becomes more narrow), we increase z
+        return Math.min(12, 6 / aspect);
+    }
+
+    return 6;
+}
+
 function init() {
     scene = new THREE.Scene();
     
@@ -67,7 +83,7 @@ function init() {
     const height = container.clientHeight;
     
     camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.z = 6;
+    camera.position.z = getInitialZoom();
 
     renderer = new THREE.WebGLRenderer({ antialias: window.devicePixelRatio < 2, alpha: true });
     // Limit pixel ratio to 2 for performance
@@ -639,6 +655,8 @@ window.addEventListener('resize', () => {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
+    // Automatically adjust zoom on resize to maintain fit
+    camera.position.z = getInitialZoom();
 });
 
 init();
@@ -711,8 +729,9 @@ container.addEventListener('wheel', (e) => {
     const zoomSpeed = 0.005;
     camera.position.z += e.deltaY * zoomSpeed;
 
-    // Prevent zooming too close or too far
-    camera.position.z = Math.max(5.5, Math.min(10, camera.position.z));
+    // Prevent zooming too close or too far.
+    // 12 seems good for mobile devices
+    camera.position.z = Math.max(5.5, Math.min(12, camera.position.z));
 }, { passive: false });
 
 ball.addEventListener('click', () => {
