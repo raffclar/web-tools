@@ -69,8 +69,9 @@ function init() {
     camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
     camera.position.z = 6;
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer = new THREE.WebGLRenderer({ antialias: window.devicePixelRatio < 2, alpha: true });
+    // Limit pixel ratio to 2 for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     container.appendChild(renderer.domElement);
 
@@ -84,11 +85,13 @@ function init() {
                 console.error('Texture image is not a valid CanvasImageSource');
                 return;
             }
+
+            // Optimization: Resize reflection map to 512x256
             const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
+            canvas.width = 512;
+            canvas.height = 256;
             const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
@@ -174,11 +177,11 @@ function init() {
 }
 
 function createBall() {
-    const geometry = new THREE.SphereGeometry(2, 64, 64);
+    const geometry = new THREE.SphereGeometry(2, 48, 48);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = 1024;
-    canvas.height = 512;
+    canvas.width = 512;
+    canvas.height = 256;
 
     // Fill with black
     ctx.fillStyle = COLOR_BALL;
@@ -191,15 +194,15 @@ function createBall() {
     
     ctx.fillStyle = COLOR_LOGO_CIRCLE;
     ctx.beginPath();
-    ctx.arc(logoX, logoY, 120, 0, Math.PI * 2);
+    ctx.arc(logoX, logoY, 40, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = COLOR_LOGO_TEXT;
     // The '8' needs to be huge
-    ctx.font = 'bold 160px Arial';
+    ctx.font = 'bold 60px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('8', logoX, logoY);
+    ctx.fillText('8', logoX, logoY + 4);
 
     // Add noise to the whole ball (except the window hole we're about to cut)
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -225,7 +228,7 @@ function createBall() {
     const windowX = canvas.width * 0.75;
     const windowY = canvas.height * 0.5;
     // Increased window radius slightly to ensure glass fits inside cleanly
-    const windowRadius = 50;
+    const windowRadius = 30;
 
     // We want the window to be transparent so we can see the die inside.
     // In Canvas, we can use destination-out to cut a hole.
@@ -281,8 +284,8 @@ function createBall() {
 function createTextTexture(text) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = 512;
-    canvas.height = 512;
+    canvas.width = 256;
+    canvas.height = 256;
 
     // Background - dark murky blue/black
     ctx.fillStyle = COLOR_DIE_TEXT_BG;
@@ -305,7 +308,7 @@ function createTextTexture(text) {
     ctx.rotate(Math.PI);
     ctx.translate(-canvas.width / 2, -canvas.height / 2);
 
-    ctx.font = 'bold 40px Arial'; // Slightly smaller font to ensure it fits the triangle
+    ctx.font = 'bold 20px Arial'; // Slightly smaller font to ensure it fits the triangle
     const rawWords = text.toUpperCase().split(' ');
     const lines = [];
     let currentLine = '';
@@ -330,13 +333,13 @@ function createTextTexture(text) {
         lines.push(currentLine);
     }
 
-    const lineHeight = 54; // Adjusted line height
+    const lineHeight = 27; // Adjusted line height
     const totalHeight = lines.length * lineHeight;
     // Adjust startY to be higher because the triangle is narrower at the bottom of the texture (which is the top of the readable text)
     // When text is flipped 180, Y decreases from bottom to top of readable text.
     // In UV space, Y+ is APEX (which is now bottom of readable text).
     // So Y- in UV space is TOP of readable text.
-    const startY = (canvas.height / 2) - (totalHeight / 2) + lineHeight / 2 - 10;
+    const startY = (canvas.height / 2) - (totalHeight / 2) + lineHeight / 2 - 5;
 
     lines.forEach((line, i) => {
         ctx.fillText(line, canvas.width / 2, startY + (i * lineHeight));
